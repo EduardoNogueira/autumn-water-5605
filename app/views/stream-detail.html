@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Detalhe</title>
-</head>
-<body>
-    {{stream}}
-</body>
-</html>
+<h3 class="text-xs-center stream-status">{{stream.channel.status}}</h3>
+
+<div class="col-md-2 detail-info">
+    <ul>
+        <li>
+            <a href="/">Back to search</a>
+        </li>
+        <li>
+            <b>Seeing Now: </b>{{ stream.viewers }}
+        </li>
+        <li>
+            <b>Total Views: </b>{{ stream.channel.views }}
+        </li>
+    </ul>
+</div>
+<div class="col-md-10">
+    <iframe
+        ng-src="{{getIframeSrc(stream.channel.name)}}"
+        height="360"
+        width="640"
+        frameborder="0"
+        scrolling="no"
+        allowfullscreen="true">
+    </iframe>
+</div>

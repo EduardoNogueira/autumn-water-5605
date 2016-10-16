@@ -1,20 +1,28 @@
-<h1 class="text-lg-center">Twitch Finder</h1>
+<h1 class="text-xs-center title">Twitch Finder</h1>
 
 <div ng-controller="TwitchFinderController">
-    <input type="text" ng-model="name" placeholder="e.g. Fifa" />
-    <button type="button" class="btn btn-default" ng-click="search()">
-        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-    </button>
+    <div class="col-xs-12 search-area">
+        <input type="text" ng-model="name" placeholder="e.g. Fifa" class="text-input" />
+        <button type="button" class="btn btn-default" ng-click="search()">
+            <span class="fa fa-search"></span> Search
+        </button>
+    </div>
     <div class="col-xs-12">
-        <div ng-if="!listStreams">
-            Loading...
-        </div>
-
-        <div ng-if="listStreams">
-            <div ng-repeat="stream in listStreams.streams" class="col-xs-12 col-sm-6 col-lg-4">
-                <img class="img-thumbnail" ng-src="{{stream.preview.large}}">
-                <a ng-click="streamDetail(stream.channel.name)">{{stream.channel.name}}</a>
+        <div class="container list-results">
+            <div class="vhcenter" ng-if="listStreams._total == 0">
+                <h2>No results</h2>
             </div>
+
+            <div ng-if="listStreams">
+                <div ng-repeat="stream in listStreams.streams" class="col-xs-12 col-sm-6 col-lg-4 list-item">
+                    <a ng-click="streamDetail(stream.channel.name)">
+                        <img class="img-thumbnail" ng-src="{{stream.preview.large}}">
+                        <p>{{stream.channel.name}}</p>
+                    </a>
+                </div>
+            </div>
+
+            <div id="list-spinner" ng-show="loading" class="loader vhcenter"></div>
         </div>
     </div>
 </div>
