@@ -12,21 +12,6 @@ app.controller('TwitchFinderController', function ($scope, $http, StreamsFactory
             $scope.listStreams = data;
             $scope.loading = false;
         });
-        /*
-        var req = {
-            method: 'GET',
-            url: 'https://api.twitch.tv/kraken/search/streams?q=' + $scope.name,
-            headers: {
-                'Client-ID': 'q9k2mh6i7wxofogt73wr69eihx41ft7'
-            }
-        }
-        $http(req).then(function successCallback(response) {
-            $scope.listStreams = response.data;
-        }, function errorCallback(response) {
-            console.log(response)
-        });
-        */
-
     };
 
     $scope.streamDetail = function (channelName) {
@@ -35,8 +20,6 @@ app.controller('TwitchFinderController', function ($scope, $http, StreamsFactory
 });
 
 app.controller('StreamDetailController', function ($scope, $http, StreamFactory, $routeParams) {
-    console.log("Stream Detalhe!");
-
     StreamFactory.show({channel: $routeParams.channel}, function (data) {
         $scope.stream = data.stream;
     });
